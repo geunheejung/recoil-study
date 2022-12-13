@@ -1,12 +1,23 @@
 import React from "react";
-import Animal from "./Animal";
-import logo from "./logo.svg";
+import ImageList from "./ImageList/ImageList";
+import Metadata from "./ImageList/Metadata";
+import { useRecoilState } from "recoil";
+import { selectedImage } from "./store";
 import "./App.css";
 
 function App() {
+  const [, addImage] = useRecoilState(selectedImage);
+
+  const handleClick = () => {
+    addImage("");
+  };
   return (
     <div className="App">
-      <Animal />
+      <div className="image-page">
+        <ImageList />
+        <Metadata />
+      </div>
+      <button onClick={handleClick}>Add Image</button>
     </div>
   );
 }
